@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const daysOfWeek = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
 const Calendar = ({ onSelectDate }) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -9,7 +9,8 @@ const Calendar = ({ onSelectDate }) => {
     const monthStart = new Date(date.getFullYear(), date.getMonth(), 1);
     const monthEnd = new Date(date.getFullYear(), date.getMonth() + 1, 0);
     const startDate = new Date(monthStart);
-    startDate.setDate(startDate.getDate() - monthStart.getDay());
+    const startDay = monthStart.getDay() === 0 ? 6 : monthStart.getDay() - 1;
+    startDate.setDate(startDate.getDate() - startDay);
 
     const calendarDays = [];
     let currentDate = startDate;
@@ -35,11 +36,24 @@ const Calendar = ({ onSelectDate }) => {
     setSelectedDate(newDate);
   };
 
+  const getWeekNumber = (date) => {
+    const targetDate = new Date(date.valueOf());
+    const firstDayOfYear = new Date(targetDate.getFullYear(), 0, 1);
+    const dayOfWeek = targetDate.getDay();
+    const firstThursdayOfYear = firstDayOfYear.getDate() - firstDayOfYear.getDay() + 4;
+
+    targetDate.setDate(targetDate.getDate() - dayOfWeek + 4);
+
+    return Math.floor(((targetDate - new Date(targetDate.getFullYear(), 0, firstThursdayOfYear)) / 86400000 + 1) / 7) + 1;
+  };
+
   const renderRows = () => {
     const rows = [];
     for (let i = 0; i < calendarDays.length; i += 7) {
+      const weekNumber = getWeekNumber(calendarDays[i]);
       const row = (
         <tr key={i}>
+          <td className="week-number">{weekNumber}</td>
           {calendarDays.slice(i, i + 7).map((date, index) => (
             <td key={index} onClick={() => selectDate(date)}>
               {date.getDate()}
@@ -62,6 +76,7 @@ const Calendar = ({ onSelectDate }) => {
       <table>
         <thead>
           <tr>
+            <th>Wk</th>
             {daysOfWeek.map((day, index) => (
               <th key={index}>{day}</th>
             ))}

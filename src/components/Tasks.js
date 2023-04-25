@@ -1,17 +1,24 @@
 import React from 'react';
 
-const Tasks = ({ tasks, toggleTask }) => {
+const Tasks = ({ tasks, toggleTask, removeTask }) => {
   return (
-    <ul>
+    <ul className="task-list">
       {tasks.map((task, index) => (
-        <li
-          key={index}
-          onClick={() => toggleTask(index)}
-          style={{
-            textDecoration: task.completed ? 'line-through' : 'none',
-          }}
-        >
-          {task.text}
+        <li className="task-list-item" key={index}>
+          <span
+            className={`task-list-item-text${task.completed ? ' completed' : ''}`}
+            onClick={() => toggleTask(index)}
+          >
+            {task.text}
+          </span>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              removeTask(index);
+            }}
+          >
+            Remove
+          </button>
         </li>
       ))}
     </ul>

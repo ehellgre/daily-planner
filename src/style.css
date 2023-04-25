@@ -1,63 +1,118 @@
-.App {
-  text-align: center;
+body {
   font-family: Arial, sans-serif;
-  max-width: 600px;
-  margin: 50px auto;
+  margin: 0;
+  padding: 0;
 }
 
-input[type='text'] {
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 2rem;
+  margin: 20px;
+}
+
+h2 {
+  margin: 20px 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid #ccc;
+  text-align: center;
   padding: 10px;
-  font-size: 16px;
-  width: 70%;
-  margin-right: 10px;
+}
+
+th {
+  background-color: #f3f3f3;
+}
+
+td {
+  cursor: pointer;
+}
+
+td:hover {
+  background-color: #f3f3f3;
+}
+
+.week-number {
+  background-color: #e0e0e0;
+  font-weight: bold;
+  color: #666;
 }
 
 button {
-  padding: 10px;
-  font-size: 16px;
   background-color: #4caf50;
-  color: white;
   border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
   cursor: pointer;
+  border-radius: 4px;
 }
 
 button:hover {
   background-color: #45a049;
 }
 
-ul {
+form {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+form input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+form button {
+  margin-left: 10px;
+}
+
+.task-list {
   list-style: none;
   padding: 0;
 }
 
-li {
-  cursor: pointer;
-  padding: 10px;
-  border-bottom: 1px solid #eee;
+.task-list-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
-li:hover {
-  background-color: #f0f0f0;
+.task-list-item-text {
+  flex: 1;
+  font-size: 16px;
 }
 
-/* Calendar */
-table {
-  width: 100%;
-  border-collapse: collapse;
+.task-list-item-text.completed {
+  text-decoration: line-through;
+  color: #888;
 }
 
-th, td {
-  width: 14.28%;
-  padding: 10px;
-  border: 1px solid #eee;
-  text-align: center;
-  cursor: pointer;
+.task-list-item button {
+  background-color: #f44336;
+  margin-left: 10px;
 }
 
-th {
-  background-color: #f0f0f0;
-}
-
-td:hover {
-  background-color: #e0e0e0;
+.task-list-item button:hover {
+  background-color: #d32f2f;
 }

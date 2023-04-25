@@ -36,6 +36,13 @@ function App() {
     setTasks(newTasks);
   };
 
+  const removeTask = (index) => {
+    const dateKey = formatDate(selectedDate);
+    const newTasks = { ...tasks };
+    newTasks[dateKey].splice(index, 1);
+    setTasks(newTasks);
+  };
+
   const dateKey = formatDate(selectedDate);
   const currentDateTasks = tasks[dateKey] || [];
 
@@ -43,6 +50,13 @@ function App() {
     <div className="App">
       <h1>Daily Planner</h1>
       <Calendar onSelectDate={setSelectedDate} />
+      <h3>
+        Tasks for {selectedDate.toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        })}
+      </h3>
       <form onSubmit={addTask}>
         <input
           type="text"
@@ -52,7 +66,7 @@ function App() {
         />
         <button type="submit">Add</button>
       </form>
-      <Tasks tasks={currentDateTasks} toggleTask={toggleTask} />
+      <Tasks tasks={currentDateTasks} toggleTask={toggleTask} removeTask={removeTask} />
     </div>
   );
 }
