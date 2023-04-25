@@ -1,0 +1,63 @@
+.App {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  max-width: 600px;
+  margin: 50px auto;
+}
+
+input[type='text'] {
+  padding: 10px;
+  font-size: 16px;
+  width: 70%;
+  margin-right: 10px;
+}
+
+button {
+  padding: 10px;
+  font-size: 16px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  cursor: pointer;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+li:hover {
+  background-color: #f0f0f0;
+}
+
+/* Calendar */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  width: 14.28%;
+  padding: 10px;
+  border: 1px solid #eee;
+  text-align: center;
+  cursor: pointer;
+}
+
+th {
+  background-color: #f0f0f0;
+}
+
+td:hover {
+  background-color: #e0e0e0;
+}
